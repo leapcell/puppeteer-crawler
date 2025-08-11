@@ -70,3 +70,6 @@ else
 fi
 
 echo "✅ Setup complete. The browser executable is now available at ./google-chrome-stable"
+
+# install node modules
+npm install
