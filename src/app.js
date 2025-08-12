@@ -49,11 +49,13 @@ app.post('/', async (req, res) => {
             // use specific path to the Chrome executable, because the default path may not work.
             // we have to download the Chrome executable and put it in the project directory.
             executablePath: './google-chrome-stable',
+            timeout: 60000,
         });
         // Create a new browser page
         const page = await browser.newPage();
         // Navigate to the specified URL and wait until the network is idle
-        await page.goto(url, { waitUntil: 'networkidle2', timeout: 0 });
+        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+        page.setDefaultNavigationTimeout(0);
         // Take a screenshot of the page
         const screenshot = await page.screenshot();
         // Get the page title
